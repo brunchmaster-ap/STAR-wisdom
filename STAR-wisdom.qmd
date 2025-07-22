@@ -39,6 +39,41 @@ The Tennessee STAR dataset comes from a large-scale, multi-year educational expe
 
 1) Imagine that you are an elementary school principal in Chicago. You want to predict student performance. Fortunately, you have data today for your current students like the data available in the STAR project.
 
+Validity
+
+Validity is the consistency, or lack thereof, in the columns of the data set and the corresponding columns in the Preceptor Table
+
+A counterexample is if kind has a value like 5 that doesn’t match any defined class type.
+
+Stabilty
+
+Stability means that the relationship between the columns in the Population Table is the same
+
+A counterexample is if small classes raise scores here but have no effect for students in another district.
+
+Representativeness
+
+Representativeness, or the lack thereof, concerns two relationship, among the rows in the Population Table
+
+A counterexample is using Tennessee-only data to make predictions for Chicago students.
+
+
+```{r}
+#| warning: false
+library(tidyverse)
+# Basic boxplot: g4math by kind
+x %>%
+  ggplot(aes(x = kind, y = g4math, fill = race)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
+  labs(
+    title = "Grade 4 Math Scores by Class Type and Race",
+    x = "Class Type",
+    y = "Grade 4 Math Score",
+    fill = "Race"
+  ) +
+  theme_minimal()
+```
+
 2) Imagine you work for the Texas Department of Education. You want to understand student performance in small classes, relative to big classes, in Dallas. In Texas, there is data available like the data in the STAR project.
 
 
@@ -46,9 +81,6 @@ The Tennessee STAR dataset comes from a large-scale, multi-year educational expe
 
 * Explore the data. What is the outcome variable? How it is distributed?
 
-```{r}
-x
-```
 
 ### Preceptor Table
 
